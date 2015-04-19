@@ -14,5 +14,9 @@
   (assoc inv :recipient {:name name
                          :address (rename-address address)}))
 
+(defn add-invoice-text [inv text] (assoc inv 
+                                    :invoice-text
+                                    text))
+
 (defn rename-address [address] 
   (rename-keys address {:address :address1}))

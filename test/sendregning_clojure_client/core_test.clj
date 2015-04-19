@@ -56,4 +56,9 @@
                            :city "Oslo"
                            :country "NORGE"})))))
 
+(deftest test-add-invoice-item
+  (testing "add invoice item to invoice"
+    (is (= {:invoice-text "a text"}
+           (add-invoice-text {} "a text")))))
+
 (run-tests)
