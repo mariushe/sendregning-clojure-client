@@ -2,7 +2,6 @@
   (:require [clojure.test :refer :all]
             [sendregning-clojure-client.core :refer :all]))
 
-
 (deftest test-add-line
   (testing "add one invoice line"
     (is (= {:lines '({:qty 1
@@ -30,5 +29,17 @@
            (-> {:lines '()}
                (add-line 1 "desc1")
                (add-line 2 "desc2"))))))
+
+(deftest test-add-recipient
+  (testing "add recipient"
+    (is (= {:recipient {:name "John Doe"
+                        :address {:address1 "Gjerdrums vei 4"
+                                  :zip "0484"
+                                  :city "Oslo"
+                                  :country "NORGE"}}}
+           (add-recipient {} "John Doe" {:address "Gjerdrums vei 4"
+                                         :zip "0484"
+                                         :city "Oslo"
+                                         :country "NORGE"})))))
 
 (run-tests)

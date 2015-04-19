@@ -1,10 +1,5 @@
 (ns sendregning-clojure-client.core)
 
-(defn foo
-  "I don't do a whole lot."
-  [x]
-  (println x "Hello, World!"))
-
 (defn prep-new-invoice []
   {:lines '()})
 
@@ -13,6 +8,11 @@
               inv
               {:lines 
                (list {:qty qty
-                      :description desc})}              
-              ))
+                      :description desc})}))
 
+(defn add-recipient [inv name address]
+  (assoc inv :recipient {:name name
+                         :address (rename-address address)}))
+
+(defn rename-address [address] 
+  (rename-keys address {:address :address1}))
