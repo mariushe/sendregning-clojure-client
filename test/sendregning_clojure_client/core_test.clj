@@ -42,4 +42,18 @@
                                          :city "Oslo"
                                          :country "NORGE"})))))
 
+(deftest test-update-recipient
+  (testing "update recipient"
+    (is (= {:recipient {:name "John Doe"
+                        :address {:address1 "Gjerdrums vei 4"
+                                  :zip "0484"
+                                  :city "Oslo"
+                                  :country "NORGE"}}}
+           (add-recipient {:recipient {:name "Old one"}}
+                          "John Doe"
+                          {:address "Gjerdrums vei 4"
+                           :zip "0484"
+                           :city "Oslo"
+                           :country "NORGE"})))))
+
 (run-tests)
