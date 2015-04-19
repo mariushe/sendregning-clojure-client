@@ -9,8 +9,10 @@
   {:lines '()})
 
 (defn add-line [inv qty desc]
-  (merge-with conj 
-              inv 
+  (merge-with concat                      
+              inv
               {:lines 
-               {:qty qty}}))
+               (list {:qty qty
+                      :description desc})}              
+              ))
 

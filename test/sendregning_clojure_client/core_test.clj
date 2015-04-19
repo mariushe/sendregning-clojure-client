@@ -5,12 +5,30 @@
 
 (deftest test-add-line
   (testing "add one invoice line"
-    (is (= {:lines '({:qty 1})} 
+    (is (= {:lines '({:qty 1
+                      :description "desc"
+                      })} 
            (add-line {:lines '()} 1 "desc")))))
 
 (deftest test-add-two-lines
   (testing "add two invoice lines"
-    (is (= {:lines '({:qty 1} {:qty 2})}
-           (add-line {:lines '({:qty 2})} 1 "desc2")))))
+    (is (= {:lines '({:qty 1
+                      :description "desc1"} 
+                     {:qty 2
+                      :description "desc2"}
+                     )}
+           (add-line {:lines '({:qty 1 :description "desc1"})} 
+                     2                     
+                     "desc2")))))
+
+(deftest test-add-two-with-arrow
+  (testing "add two invoice lines with arrow syntax"
+    (is (= {:lines '({:qty 1
+                      :description "desc1"}
+                     {:qty 2
+                      :description "desc2"})}
+           (-> {:lines '()}
+               (add-line 1 "desc1")
+               (add-line 2 "desc2"))))))
 
 (run-tests)
